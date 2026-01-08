@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% for post in posts %}
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content|truncatewords:30 }}</p>
+            <small>Автор: {{ post.author.username }} | {{ post.created_at|date:"d.m.Y H:i" }}</small><br>
+            <a href="{% url 'blog:post_detail' post.slug %}" class="btn btn-sm btn-primary mt-2">Прочети повече</a>
+        </div>
+    </div>
+{% empty %}
+    <p>Все още няма публикувани постове.</p>
+{% endfor %}
+{% endblock %}

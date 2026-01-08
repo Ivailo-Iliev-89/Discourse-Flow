@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <hr>
+    <small>
+        Автор: {{ post.author.username }} | {{ post.created_at|date:"d.m.Y H:i" }}
+    </small>
+    <br>
+    <a href="{% url 'blog:post_list' %}" class="btn btn-secondary mt-3">Назад</a>
+</div>
+
+<hr>
+<h4>Коментари ({{ comments.count }})</h4>
+
+<form method="post" action="{{ post.get_absolute_url }}" id="comment-form">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <input type="hidden" name="parent_id" id="parent_id">
+    <button type="submit" class="btn btn-primary">Изпрати</button>
+</form>
+
+<div class="mt-4">
+    {% for comment in comments %}
+        {% include 'blog/includes/comment.html' with comment=comment %}
+    {% empty %}
+        <p>Все още няма коментари — бъди първи!</p>
+    {% endfor %}
+</div>
+{% endblock %}
