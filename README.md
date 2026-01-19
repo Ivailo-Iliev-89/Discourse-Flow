@@ -7,9 +7,11 @@ Simple Django poject with :
 - Create, Update, Delete for posts
 
 ## Instructions
+1. `https://github.com/ivailoiliev89-netizen/Blog-Project
+2. `download the source code on a local host
+3. `create a venv , then cd into a project folder
+4. `python manage.py createsuperuser`
+5. `python manage.py runserver`
+6. `localhost : http://127.0.0.1:8000/
 
-1. `python manage.py migrate`
-2. `python manage.py createsuperuser`
-3. `python manage.py runserver`
-4. Localhost : http://127.0.0.1:8000/
 
