@@ -26,9 +26,12 @@ It is created as a portfolio project to showcase Python development skills.
 1. Clone the repository:
 2. ```bash
 3. git clone https://github.com/ivailoiliev89-netizen/Blog-Project.git
-4. cd Blog-Project
-5. pip install -r requirements.txt
-6. python manage.py runserver
+4. Create a new folder called Blog-Project
+5. Copy folders blog and bloj_project and the rest of the files in this Blog-Project
+6. in terminal :
+7. -- cd Blog-Project
+8. -- pip install -r requirements.txt
+9. -- python manage.py runserver
 
 ## What I Learned 
 
@@ -41,3 +44,4 @@ It is created as a portfolio project to showcase Python development skills.
 
 Ivailo Iliev
 GitHub: https://github.com/ivailoiliev89-netizen
+
