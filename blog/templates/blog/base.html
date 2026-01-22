@@ -1,28 +1,51 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Моят Блог{% endblock %}</title>
+    <title>{% block title %}My Personal Blog{% endblock %}</title>
     {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 </head>
-<body class="container mt-4">
 
-<nav class="navbar navbar-light bg-light mb-4 p-3 rounded">
-    <span class="navbar-brand">Моят Блог</span>
-    <div>
-        {% if user.is_authenticated %}
-            Здравей, {{ user.username }}!
-            <a href="{% url 'blog:post_create' %}" class="btn btn-success btn-sm">Нов пост</a>
-            <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm">Изход</a>
-        {% else %}
-            <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Вход</a>
-        {% endif %}
-    </div>
-</nav>
+<body class="site-body">
 
-{% block content %}{% endblock %}
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'blog:post_list' %}">My Personal Blog</a>
+            <div class="nav-auth-buttons">
+                {% if user.is_authenticated %}
+                    <span class="user-welcome text-muted">Hello, {{ user.username }}!</span>
+                    <a href="{% url 'blog:post_create' %}" class="btn btn-create">New Post</a>
+                    <a href="{% url 'logout' %}" class="btn btn-exit">Exit</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-enter">Enter</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
 
-<script src="{% static 'blog/parent_id.js' %}"></script>
+    {% block hero %}{% endblock %}
+
+    <main class="main-content">
+        <div class="container mt-4">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="custom-footer">
+        <div class="container">
+            <h5 class="footer-title">My Django Blog</h5>
+            <p class="footer-text">
+                A space for ideas, inspiration and knowledge sharing.<br>
+                Welcome to my digital world.
+            </p>
+            <hr class="footer-divider">
+            <p class="footer-copy">&copy; 2026 My Django Blog</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'blog/parent_id.js' %}"></script>
 </body>
 </html>
