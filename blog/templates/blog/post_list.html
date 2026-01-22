@@ -1,15 +1,46 @@
 {% extends 'blog/base.html' %}
-{% block content %}
-{% for post in posts %}
-    <div class="card mb-3 shadow-sm">
-        <div class="card-body">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.content|truncatewords:30 }}</p>
-            <small>Автор: {{ post.author.username }} | {{ post.created_at|date:"d.m.Y H:i" }}</small><br>
-            <a href="{% url 'blog:post_detail' post.slug %}" class="btn btn-sm btn-primary mt-2">Прочети повече</a>
-        </div>
+
+{% block hero %}
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="hero-title">Share your story here ...</h1>
+        <p class="hero-subtitle">Welcome to our corner of ideas, technology and inspiration.</p>
     </div>
-{% empty %}
-    <p>Все още няма публикувани постове.</p>
-{% endfor %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% for post in posts %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card post-card h-100">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top post-card-img" alt="{{ post.title }}">
+                {% else %}
+                    <div class="no-image-placeholder">
+                        <i class="bi bi-image"></i>
+                    </div>
+                {% endif %}
+
+                <div class="card-body">
+                    <div class="category-badge mb-2">{{ post.category }}</div>
+                    <h5 class="post-card-title">{{ post.title }}</h5>
+                    <p class="post-card-text">{{ post.content|truncatewords:15 }}</p>
+
+                    <div class="post-card-meta mt-auto">
+                        <div class="author-info">
+                            <span class="author-name">{{ post.author.username }}</span>
+                            <span class="post-date text-muted">{{ post.created_at|date:"d M Y" }}</span>
+                        </div>
+                        <a href="{% url 'blog:post_detail' post.slug %}" class="btn-more">More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12 text-center py-5">
+            <div class="alert alert-light no-posts-alert">No posts have been published yet.</div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
