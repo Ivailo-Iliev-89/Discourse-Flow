@@ -33,7 +33,8 @@ It is created as a portfolio project to showcase Python and Django development s
 3. git clone https://github.com/ivailoiliev89-netizen/Blog-Project.git
 4. -- pip install -r requirements.txt
 5. -- python manage.py migrate
-6. -- python manage.py runserver
+6. -- python manage.py createsuperuser
+7. -- python manage.py runserver
 
 ## What I Learned 
 
@@ -46,6 +47,7 @@ It is created as a portfolio project to showcase Python and Django development s
 
 Ivailo Iliev
 GitHub: https://github.com/ivailoiliev89-netizen
+
 
 
 
