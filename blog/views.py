@@ -1,10 +1,10 @@
-from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from .models import Post, Comment
-from .forms import CommentForm
+from .models import Post, Comment, Tag
+from .forms import CommentForm, PostForm
 from django.views.generic import CreateView, UpdateView, DetailView, DeleteView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django import forms
 
 
 # Views of Base logic
@@ -20,7 +20,7 @@ class PostListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        # return only a published posts
+        """Return only a published posts"""
 
         return Post.objects.filter(
             status=Post.PUBLISHED).exclude(slug__exact='').select_related('author').prefetch_related('tags')
@@ -44,10 +44,9 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         post = self.object
 
-        # we take only active comments,without parent !
-
         context['comments'] = post.comments.filter(active=True, parent__isnull=True)
         context['comment_form'] = CommentForm()
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -76,6 +75,7 @@ class PostDetailView(DetailView):
 
         context = self.get_context_data()
         context['comment_form'] = comment_form
+
         return self.render_to_response(context)
 
 
@@ -85,12 +85,29 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
+    form_class = PostForm
     template_name = 'blog/post_create.html'
-    fields = ['title', 'content', 'image', 'category', 'tags', 'status']
     success_url = reverse_lazy('blog:post_list')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['tags'].widget = forms.CheckboxSelectMultiple()
+        form.fields['tags'].queryset = Tag.objects.all()
+
+        for field_name, field in form.fields.items():
+            if field_name != 'tags':
+                field.widget.attrs.update({'class': 'form-control'})
+            else:
+                field.widget.attrs.update({'class': 'form-check-input-group'})
+
+        if 'category' in form.fields:
+            form.fields['category'].empty_label = "Select Category"
+
+        return form
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.instance.status = 'P'
         return super().form_valid(form)
 
 
@@ -100,12 +117,25 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    template_name = 'blog/post_form.html'
-    fields = ['title', 'content', 'image', 'category', 'tags', 'status']
+    template_name = 'blog/post_create.html'
+    fields = ['title', 'content', 'image', 'category', 'tags']
     slug_url_kwarg = 'slug'
     slug_field = 'slug'
 
-    def test_function(self):
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['tags'].widget = forms.CheckboxSelectMultiple()
+
+        for field_name, field in form.fields.items():
+            if field_name != 'tags':
+                field.widget.attrs.update({'class': 'form-control'})
+
+        if 'category' in form.fields:
+            form.fields['category'].empty_label = "Select Category"
+
+        return form
+
+    def test_func(self):
         """"Only the creator of the post can edit"""
         post = self.get_object()
         return post.author == self.request.user
@@ -122,15 +152,21 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('blog:post_list')
 
-    def test_function(self):
-        """Only the creator of the post can update"""
+    def test_func(self):
+        """Only the creator of the post can delete"""
         post = self.get_object()
         return post.author == self.request.user
 
-#
-# def post_list(request):
-#     posts = Post.objects.all().order_by('-created_at')
-#     return render(request, 'blog/post_list.html', {'posts': posts})
-#
-# class CustomLoginView(LoginView):
-#     redirect_authenticated_user = True
+
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = 'blog/comment_confirm_delete.html'
+
+    def get_success_url(self):
+        """After deleting , we are going back into the same article"""
+        return self.object.post.get_absolute_url()
+
+    def test_func(self):
+        """Checking if this user is author of the comment"""
+        comment = self.get_object()
+        return self.request.user == comment.user
