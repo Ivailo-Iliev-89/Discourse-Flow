@@ -1,15 +1,15 @@
 <div class="container mt-4">
-    <h2>Вход</h2>
+    <h2>Login</h2>
     <form method="post">
         {% csrf_token %}
         <div class="mb-3">
-            <label>Потребителско име</label>
+            <label>Username</label>
             <input type="text" name="username" class="form-control">
         </div>
         <div class="mb-3">
-            <label>Парола</label>
+            <label>Password</label>
             <input type="password" name="password" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Влез</button>
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
 </div>
