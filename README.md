@@ -43,11 +43,5 @@ It is created as a portfolio project to showcase Python and Django development s
 - Handling data and application flow
 - Writing cleaner and more readable code 
 
-## Author
-
-Ivailo Iliev
-GitHub: https://github.com/ivailoiliev89-netizen
-
-
 
 
