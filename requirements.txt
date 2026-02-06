@@ -1,6 +1,9 @@
 asgiref==3.8.1
 django==4.2.25
+dotenv==0.9.9
 pillow==10.4.0
+python-dotenv==1.2.1
 sqlparse==0.5.3
 typing-extensions==4.13.2
 tzdata==2025.2
+whitenoise==6.11.0
