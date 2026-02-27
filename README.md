@@ -20,7 +20,7 @@ It focuses on robust ***authorization logic, dynamic media handling, and an inte
 - ***Backend*** :  Python, Django
 - ***Frontend*** :  HTML, Custom CSS, JavaScript (ES6+), Bootstrap 5
 - ***Database*** :  SQLite ( for Development) / PostgreSQL ( Ready )
-- ***Authentication*** :  Django Built-in Auth System
+- ***Authentication*** :  Django Built-in Auth System.
 
 
 ## What I Learned 
