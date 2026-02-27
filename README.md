@@ -1,8 +1,7 @@
-# Django Blog Engine
+# Discourse Flow
 ### Secure Content-Driven Platform with Nested Discussions
 
-
-***Django Blog Engine***  is a full featured content management system, designed for personal storytelling.
+***Discourse Flow***  is a full featured content management system, designed for personal storytelling.
 It focuses on robust ***authorization logic, dynamic media handling, and an interactive commenting system*** to showcase clean full-stack development patterns.
 
 
@@ -57,5 +56,6 @@ It focuses on robust ***authorization logic, dynamic media handling, and an inte
 - ***Search Functionality*** :  ***Implementing a full-text search engine*** (using ***Django's `Q` objects or PostgreSQL `SearchVector`***) to help users find posts by keywords.
 - ***Social Authentication*** :  ***Adding `django-allauth`*** to allow users to sign in using their Google or GitHub accounts.
 - ***Post Categories and Tags*** :  ***Developing a taxonomy system*** to organize content better and improve SEO.
+
 
 
