@@ -19,7 +19,7 @@ It focuses on robust ***authorization logic, dynamic media handling, and an inte
 - ***Backend*** :  Python, Django
 - ***Frontend*** :  HTML, Custom CSS, JavaScript (ES6+), Bootstrap 5
 - ***Database*** :  SQLite ( for Development) / PostgreSQL ( Ready )
-- ***Authentication*** :  Django Built-in Auth System.
+- ***Authentication*** :  Django Built-in Auth System
 
 
 ## What I Learned 
@@ -33,7 +33,7 @@ It focuses on robust ***authorization logic, dynamic media handling, and an inte
 
 - Clone or download the repository :
 - ```bash
-- git clone https://github.com/ivailoiliev89-netizen/Blog-Project.git
+- git clone https://github.com/Ivailo-Iliev-89/Discourse-Flow.git
 - ***Create*** a .env file and populate it with your DB credentials (see settings.py for required keys)
 - pip install -r requirements.txt
 - python manage.py makemigrations
@@ -56,6 +56,7 @@ It focuses on robust ***authorization logic, dynamic media handling, and an inte
 - ***Search Functionality*** :  ***Implementing a full-text search engine*** (using ***Django's `Q` objects or PostgreSQL `SearchVector`***) to help users find posts by keywords.
 - ***Social Authentication*** :  ***Adding `django-allauth`*** to allow users to sign in using their Google or GitHub accounts.
 - ***Post Categories and Tags*** :  ***Developing a taxonomy system*** to organize content better and improve SEO.
+
 
 
 
