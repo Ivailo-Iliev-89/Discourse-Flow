@@ -13,6 +13,20 @@ It focuses on robust ***authorization logic, dynamic media handling, and an inte
 - ***Responsive Architecture*** :  ***Crafted a sleek, card-based UI*** using Bootstrap 5, focusing on modular CSS for maintainability and scalability.
 - ***CRUD Logic*** :  Full lifecycle management for blog entries, from ***draft creation to secure deletion***.
 
+
+## Preview
+
+#### Home Page
+[Home Page](screenshots/discourse-main.png)
+
+#### Discussion System (Nested Replies)
+[Post Detail](screenshots/discourse-cms.png)
+
+#### Post Creation & Management (CRUD)
+[Create Post](screenshots/discourse-post.png)
+
+#### Guest Mode ( Not Registered Users )
+[Guest Mode](screenshots/discourse-not-register.png)
   
 ## Tech Stack
 
