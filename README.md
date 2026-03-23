@@ -17,16 +17,16 @@ It focuses on robust ***authorization logic, dynamic media handling, and an inte
 ## Preview
 
 #### Home Page
-[Home Page](screenshots/discourse-main.png)
+![Home Page](screenshots/discourse-main.png)
 
 #### Discussion System (Nested Replies)
-[Post Detail](screenshots/discourse-cms.png)
+![Post Detail](screenshots/discourse-cms.png)
 
 #### Post Creation & Management (CRUD)
-[Create Post](screenshots/discourse-post.png)
+![Create Post](screenshots/discourse-post.png)
 
 #### Guest Mode ( Not Registered Users )
-[Guest Mode](screenshots/discourse-not-register.png)
+![Guest Mode](screenshots/discourse-not-register.png)
   
 ## Tech Stack
 
